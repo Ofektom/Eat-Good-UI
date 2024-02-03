@@ -1,14 +1,8 @@
-import { useState } from 'react'
-import DashBoard from './pages/DashBoard'
+import React from 'react'
+import Login from './components/LoginPage/Login'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <DashBoard />
-    </>
-  )
+const App = () => {
+  return <Login />
 }
 
-export default App;
+export default App
