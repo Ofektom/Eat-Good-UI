@@ -63,7 +63,7 @@ const Login = () => {
               <span className="glogo">
                 <img src="src/assets/images/google.png" alt="Google Logo" />
               </span>
-              <span id="g-text">Sign Up with Google</span>
+              <span id="g-text">Login with Google</span>
             </button>
           </form>
         </div>
@@ -114,9 +114,9 @@ const Login = () => {
 
           <div className="forget-text">
             <p>
-              Already have an account?{' '}
+              Don't have an account?{' '}
               <span className="sign-in-text" href="#">
-                Sign in here
+                Sign up here
               </span>
             </p>
           </div>

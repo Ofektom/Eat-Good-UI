@@ -1,62 +1,51 @@
 import React, { useState } from 'react';
-import './signup.css';
+import './SignUp.css';
+import AuthService from '../../services/AuthService';
 
 const SignUp = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Validate passwords match
-      if (password !== confirmPassword) {
-        console.error('Passwords do not match');
-        return;
-      }
-
-      // Create user data object
-      const userData = {
-        fullName,
-        email,
-        phoneNumber,
-        password,
+    const [user, setUser] = useState({
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
+        confirmPassword: '',
+      });
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Add your signup logic here, e.g., call API to register the user
+        try {
+          await AuthService.signup(user);
+          console.log('Signup successful');
+          // Redirect or show success message
+        } catch (error) {
+          console.error('Signup failed:', error);
+          // Handle signup error, e.g., show error message to the user
+        }
+    
+        console.log('Signup submitted:', user);
+    
+        // Reset form fields after submission
+        setUser({
+          fullName: '',
+          email: '',
+          phoneNumber: '',
+          password: '',
+          confirmPassword: '',
+        });
       };
-
-    await AuthService.signup(userData);
-
-
-    history.push('/login');
-  } catch (error) {
-    console.error('Signup failed:', error);
-  }
-
-    console.log('Signup submitted:', {
-      fullName,
-      email,
-      phoneNumber,
-      password,
-      confirmPassword,
-    });
-
-    // Reset form fields after submission
-    setFullName('');
-    setEmail('');
-    setPhoneNumber('');
-    setPassword('');
-    setConfirmPassword('');
-
-  };
-
+    
+      const handleChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+      };
+    
   return (
     <div className="div">
       <div className="div-2">
         <div className="column">
           <img
-            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&"  {/* Replace with the actual image source */}
+            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/69409aca8ab365c6967f8103e510c7783b19598b9ceadf9eef6b3070ec815e4d?apiKey=f034156a35d447a6a80ca3e586c86bf3&"  
             className="img"
             alt="Logo"
           />
@@ -65,6 +54,18 @@ const SignUp = () => {
           <div className="div-3">
             <div className="div-4">Eat Good Naija</div>
             <div className="div-5">Create a new account</div>
+            
+            <div className="google-form">
+                <form>
+                    <button>
+                    <span className="glogo">
+                        <img src="src/assets/images/google.png" alt="Google Logo" />
+                    </span>
+                    <span id="g-text">Sign Up with Google</span>
+                    </button>
+                </form>
+            </div>
+
             <form onSubmit={handleSubmit}>
               <div className="div-13">Full name</div>
               <div className="div-14">
@@ -79,8 +80,8 @@ const SignUp = () => {
                     id="fullName"
                     name="fullName"
                     placeholder="Enter your full name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    value={setUser.fullName}
+                    onChange={handleChange}
                   />
                 </label>
               </div>
@@ -98,7 +99,7 @@ const SignUp = () => {
                     id="email"
                     name="email"
                     placeholder="Enter your email"
-                    value={email}
+                    value={setUser.email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
@@ -123,7 +124,7 @@ const SignUp = () => {
                     id="phoneNumber"
                     name="phoneNumber"
                     placeholder="Enter your phone number"
-                    value={phoneNumber}
+                    value={setUser.phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </label>
@@ -134,27 +135,20 @@ const SignUp = () => {
                   <div className="div-25">
                     <img
                       loading="lazy"
-                      src="..."
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/dfce1ef306069881af75d840a12e3e2fc4824cc460e3af71ac1f309769e691d6?apiKey=f034156a35d447a6a80ca3e586c86bf3&"
                       className="img-7"
                       alt="Password"
                     />
                     <input
-                      type={passwordVisibility ? 'text' : 'password'}
+                      type="password"
                       id="password"
                       name="password"
                       placeholder="Enter your password"
-                      value={password}
+                      value={setUser.password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                 </label>
-                <img
-                  loading="lazy"
-                  src="..."
-                  className="img-8"
-                  alt="Toggle Password Visibility"
-                  onClick={togglePasswordVisibility}
-                />
               </div>
               <div className="div-27">Confirm password</div>
               <div className="div-28">
@@ -162,27 +156,20 @@ const SignUp = () => {
                   <div className="div-29">
                     <img
                       loading="lazy"
-                      src="..."
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/4cc2e7b098ebc31f2a9976584e041b3810d31d71bfed20416429b08a20bb560a?apiKey=f034156a35d447a6a80ca3e586c86bf3&"
                       className="img-9"
                       alt="Confirm Password"
                     />
                     <input
-                      type={confirmPasswordVisibility ? 'text' : 'password'}
+                      type="password"
                       id="confirmPassword"
                       name="confirmPassword"
                       placeholder="Confirm your password"
-                      value={confirmPassword}
+                      value={setUser.confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>
                 </label>
-                <img
-                  loading="lazy"
-                  src="..."
-                  className="img-10"
-                  alt="Toggle Confirm Password Visibility"
-                  onClick={toggleConfirmPasswordVisibility}
-                />
               </div>
               <button type="submit" className="div-31">
                 Submit
