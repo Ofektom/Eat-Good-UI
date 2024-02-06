@@ -1,0 +1,307 @@
+
+:root{
+    --theme-color: #2F80ED;
+     --secondary-color: #010f1c;
+    --default-font-family: 'Inter', sans-serif;
+    /*--quaternary-color: #f3f3f3;
+    --quinary-color: #f3f3f3;
+    --senary-color: #f3f3f3;
+    --septenary-color: #f3f3f3;
+    --octonary-color: #f3f3f3;
+    --nonary-color: #f3f3f3;
+    --denary-color: #f3f3f3; */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body-wrapper{
+    background-color: #ffffff;
+}
+
+/* ... other styles ... */
+.navbar {
+    position: relative;
+}
+
+/* Style for the search bar */
+.navbar .d-flex {
+    width: 100%;
+}
+
+.navbar .d-flex .w-30 {
+    width: 30%;
+    margin-left: 40%; /* Position the search bar 40% from the start of the navbar */
+}
+
+.navbar .d-flex .input-group {
+    width: 100%;
+}
+
+.navbar .d-flex .input-group .form-control {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding-left: 0; /* Remove default padding */
+}
+
+.navbar .d-flex .input-group .input-group-text {
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center the icons */
+    padding: 0 0.5rem; /* Add horizontal padding if needed */
+}
+
+/* Style for the search icon */
+.navbar .d-flex .input-group .input-group-text:first-child {
+    padding-right: 0; /* Remove right padding for the first icon */
+}
+
+/* Style for the filter icon */
+.navbar .d-flex .input-group .input-group-text:last-child {
+    padding-left: 0; /* Remove left padding for the last icon */
+}
+
+.sidebar img{
+    margin-left: 1.2rem;
+}
+
+.sidebar li p {
+    margin-left: 0.6rem;
+}
+
+
+.sidebar ul li { 
+    list-style-type: none;
+   
+}
+
+ .sidebar-items{ 
+    margin-bottom: 2.8rem;
+   
+}
+
+.sidebar ul li img{
+    width: 1.5rem;
+   
+}
+
+ .main-content .categories {
+    
+} 
+
+.main-content .categories ul li{
+    list-style-type: none;
+    display: inline-flex;
+    padding: 0.4rem 0.7rem;
+    justify-content: space-between;
+    margin: 2rem 0.7rem; 
+    margin-top: 3rem;
+    height: max-content;
+    background-color: #EAECF0;
+    border-radius: 0.8rem;
+}
+
+.main-content .categories ul li img {
+   width: 1.8rem;
+   height: 1.6rem;
+   padding-right: 0.3rem;
+   
+}
+
+.products .card-prod {
+    margin-top:  4rem;
+    
+}
+
+.card-prod  {
+    /* margin: 4rem 2rem; 
+     padding: 0 2em;   */
+      /* width: 15rem; */    
+      align-items: center; 
+      width: 17.5rem !important; 
+      /* height: 8.rem; */
+      margin-bottom: 2.5rem;
+} 
+
+.product-card .rating {
+    margin-top: 1rem;
+    font-family: inter;
+    font-weight: 300;
+    color: #828282;
+
+} 
+.product-card .bi-star-fill{
+    color: var(--theme-color);
+}
+
+
+.card-prod .product-card .card-body {
+    padding: 0.5rem 0.5rem;
+    margin-top: -3.2rem;
+    background-color: #ffffff;
+    border: none;
+}
+
+.card-prod .product-card img{
+    width: 6.6rem;
+    height: 6.5rem;
+    position: relative;
+    bottom: 4em;
+    left: 1.5em;
+}
+
+.card-body .card-title {
+    font-family: inter;
+    font-weight: 300;
+}
+
+.card-prod .product-card .card-footer {
+    background-color: #ffffff;
+    border: none;
+    padding-top: -3rem !important;
+    
+}
+
+.card-footer .btn {
+    background-color: white;
+    color: var(--theme-color);
+    border: 1px solid #EAECF0;
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.625rem;
+    margin: 0.5rem 0.5rem;
+    
+}
+
+.card-footer .bi-plus {
+   font-weight: 300;
+}
+
+.card-footer .btn:hover {
+    background-color: #ffffff;
+    color: #B6B6B6;
+    border: 1px solid #B6B6B6;
+}
+
+.card-footer .price {
+    font-family: inter;
+    font-weight: 500;
+
+}
+
+.card-footer .product-weight {
+    position: relative;
+    top: 1.4rem;
+    left: 5rem; 
+    font-family: inter;
+    font-weight: 300;
+    color: #828282;
+    
+}
+
+.cart {
+    font-family: inter;
+}
+
+.cart-heading {
+    margin-right: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+.cart-heading .badge{
+    padding-right: 1.2rem;
+     width: 0.5rem;
+    height: 1.4rem; 
+    font-size: 1rem;
+    border-radius: 50%;
+    position: relative;
+    font-family: inter;
+    font-weight: 400;
+    bottom: 0.1rem;
+    left: 0.5rem;
+}
+
+.cart-heading h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.cart-area {
+    display: flex;
+}
+
+.cart-area-details p{
+    margin-bottom: 0.2rem;
+}
+
+.cart-area-details .prod-desc {
+    font-size: 1.07rem;
+    font-weight: 500;
+    color: #101828;
+}
+
+ .text-brown {
+    color: #828282;
+    font-weight: 400;
+}
+
+.cart-area-details .prod-price {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #101828;
+}
+
+ .cart-area-image img {
+    /* width: 5rem;
+    height: 2rem; */
+    position: relative;
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+.quantity-container i {
+    background-color: #f0f0f0;
+    border-radius: 0.7rem;
+    padding: 0.6rem;
+}
+
+.quantity-container .card-edit {
+    background-color: #ccf0f0;
+    border-radius: 0.7rem;
+    padding: 0.45rem;
+}
+
+ .quantity-container .card-edit img  {
+    width: 1.3rem;
+    height: 1.2rem;
+
+} 
+
+.cart-area {
+    font-size: 0.9rem;
+}
+
+.cart-area hr {
+    width: 100%;
+    height: 0.1rem;
+    background-color: #EAECF0;
+    position: relative; 
+}
+
+.checkout-area {
+    border-top: 1px solid #EAECF0;
+    margin-top: 10rem;
+}
+
+.pay-btn .buy-now-btn {
+    background-color: #2F80ED;
+    font-family: inter;
+    font-weight: 600;
+    padding: 0.7rem;
+    border-radius: 1.1rem;
+}

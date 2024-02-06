@@ -1,48 +1,128 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Modal } from 'react-bootstrap';
+import axios from 'axios';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await fetch('your-authentication-endpoint', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        });
+    const navigate = useNavigate();
+    const { credential } = useParams();
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+    const [status, setStatus] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [user, setUser] = useState({
+      email: "",
+      password: "",
+    });
   
-        if (response.ok) {
-          // Authentication successful, you might redirect or update state accordingly
-          console.log('Login successful');
-        } else {
-          // Authentication failed, handle errors
-          console.error('Login failed');
-        }
+    const { email, password } = user;
+  
+    // const onInputChange = (e) => {
+    //   setUser({ ...user, [e.target.name]: e.target.value });
+    //   console.log('user', user)
+    // };
+    const onInputChange = (e) => {
+      setUser({ ...user, [e.target.name]: e.target.value });
+      console.log('user', user)
+    };
+
+  
+    const onGoogleSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        const response = await axios.get(
+          `http:///api/v1/auth/google/${credential}`
+        );
+  
+        const token = response.data;
+  
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  
+        setShowModal(true);
+        setStatus(true);
+        setSuccessMessage("Success");
+  
+        setModalMessage("Welcome to Eat Good Naija!");
+  
+        setTimeout(() => {
+          navigate("/product-dashboard");
+        }, 800);
       } catch (error) {
-        console.error('Error during login:', error);
+        navigate("/product-dashboard");
+        // Handle the error here
+        console.error("Error during Login:", error);
+        const errorMessage =
+          error.response?.data?.message ||
+          "An error occurred during Login. Please try again.";
+  
+        setStatus(false);
+        setErrorMessage("Error");
+  
+        setShowModal(true);
+        setModalMessage(errorMessage);
       }
-  };
+    };
+  
+    const onSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        console.log('user', user)
+        const response = axios.post( "http://localhost:8081/api/v1/auth/login", {
+         username: user.email,
+         password: user.password
+        })
+
+  
+        const token = response.data;
+        console.log(token);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  
+        setShowModal(true);
+        setStatus(true);
+        setSuccessMessage("Success");
+  
+        setModalMessage("Welcome to Eat Good Naija!");
+  
+        // Set a 5-second delay before navigating to "/signin"
+        setTimeout(() => {
+          navigate("/product-dashboard");
+        }, 1000);
+      } catch (error) {
+        // Handle the error here
+        console.error("Error during Login:", error);
+  
+        setStatus(false);
+        setErrorMessage("Error");
+  
+        setShowModal(true);
+        setModalMessage("Go to your email to Verify Registration");
+      }
+    };
+  
+    const handleClose = () => {
+      setShowModal(false);
+      setSuccessMessage("");
+      setErrorMessage("");
+      setModalMessage("");
+    };
+
+    function togglePasswordVisibility(inputId, toggleIconId) {
+        var passwordInput = document.getElementById(inputId);
+        var toggleIcon = document.getElementById(toggleIconId);
+      
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.src = "./eye.png";  // Use an eye-open icon
+        } else {
+          passwordInput.type = "password";
+          toggleIcon.src = "eye-slash.png";  // Use an eye-slash icon
+        }
+      }
+  
 
   return (
     <div className="main">
@@ -57,16 +137,12 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="google-form">
-          <form>
-            <button>
-              <span className="glogo">
-                <img src="src/assets/images/google.png" alt="Google Logo" />
-              </span>
-              <span id="g-text">Login with Google</span>
-            </button>
-          </form>
-        </div>
+        <form onSubmit={(e) => onGoogleSubmit(e)}>
+              <button className="google-button">
+                <img id="img6" src="../src/assets/icons/Google.png" />
+                <span className="googe-text">Sign In with Google</span>
+              </button>
+            </form>
 
         <div className="or-section">
           <div className="orleft"></div>
@@ -75,7 +151,7 @@ const Login = () => {
         </div>
 
         <div className="signup-form">
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => onSubmit(e)}>
             <label htmlFor="email">Email</label>
             <div className="input-group">
               <i>&#9993;</i>
@@ -85,7 +161,7 @@ const Login = () => {
                 name="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={(e) => onInputChange(e)}
                 required
               />
             </div>
@@ -94,12 +170,12 @@ const Login = () => {
             <div className="input-group">
               <span className="lock-icon">🔒</span>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type="text"
                 id="password"
                 name="password"
                 placeholder="Enter your password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => onInputChange(e)}
                 required
               />
               <span className="eye-icon" onClick={togglePasswordVisibility}>
@@ -111,6 +187,24 @@ const Login = () => {
               Login
             </button>
           </form>
+
+          <Modal show={showModal} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  {status ? successMessage : errorMessage}
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="modal-body">{modalMessage}</Modal.Body>
+              <Modal.Footer>
+                <Button
+                  className="modal-close"
+                  variant="secondary"
+                  onClick={handleClose}
+                >
+                  Continue
+                </Button>
+              </Modal.Footer>
+            </Modal>
 
           <div className="forget-text">
             <p>

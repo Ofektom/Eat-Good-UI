@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage';
 import SignUp from './components/SignUpPage/Signup';
 import Login from './components/LoginPage/Login';
-import CartSection from './components/DashBoard/CartSection/CartSection';
+import SignUps from './components/SignUpPage/SignUps';
+import ProductDashboard from './components/DashBoard/ProductDashboard/ProductDashboard';
+
 
 function App() {
   return (
@@ -14,7 +16,8 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/cart" element={<CartSection />} />
+          <Route exact path="/sign" element={<SignUps />} />
+          <Route exact path="/product-dashboard" element={<ProductDashboard />} />
         </Routes>
       </Router>
     </>

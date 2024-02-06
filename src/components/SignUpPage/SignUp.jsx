@@ -1,45 +1,86 @@
 import React, { useState } from 'react';
 import './SignUp.css';
-import AuthService from '../../services/AuthService';
+import { Link, useNavigate } from 'react-router-dom';
+import { GoogleLogin } from "@react-oauth/google";
+import { Button, Modal } from "react-bootstrap";
+import axios from 'axios';
 
 const SignUp = () => {
+    const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+    const [status, setStatus] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [user, setUser] = useState({
-        fullName: '',
-        email: '',
-        phoneNumber: '',
-        password: '',
-        confirmPassword: '',
-      });
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        // Add your signup logic here, e.g., call API to register the user
-        try {
-          await AuthService.signup(user);
-          console.log('Signup successful');
-          // Redirect or show success message
-        } catch (error) {
-          console.error('Signup failed:', error);
-          // Handle signup error, e.g., show error message to the user
-        }
-    
-        console.log('Signup submitted:', user);
-    
-        // Reset form fields after submission
-        setUser({
-          fullName: '',
-          email: '',
-          phoneNumber: '',
-          password: '',
-          confirmPassword: '',
+      fullName: "",
+      username: "",
+      phoneNumber: "",
+      password: "",
+      confirmPassword: "",
+    });
+  
+    const { fullName, username, phoneNumber, password, confirmPassword } =
+      user;
+  
+    const onInputChange = (e) => {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    };
+  
+    const onSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        await axios.post("http://localhost:8081/api/v1/auth/vendor-sign-up", user, {
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
-      };
-    
-      const handleChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value });
-      };
-    
+  
+        setShowModal(true);
+        setStatus(true);
+        setSuccessMessage("Success");
+  
+        setModalMessage("Email Sent Successfully!");
+  
+        // Set a 5-second delay before navigating to "/signin"
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } catch (error) {
+        // Handle the error here
+        console.error("Error during registration:", error);
+  
+        setStatus(false);
+        setErrorMessage("Error");
+  
+        setShowModal(true);
+        setModalMessage(
+          "An error occurred during registration. Please try again."
+        );
+      }
+    };
+  
+    const handleClose = () => {
+      setShowModal(false);
+      setSuccessMessage("");
+      setErrorMessage("");
+      setModalMessage("");
+    };
+
+    function togglePasswordVisibility1(inputId, toggleIconId) {
+        var passwordInput = document.getElementById(inputId);
+        var toggleIcon = document.getElementById(toggleIconId);
+      
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.src = "./eye.png";  // Use an eye-open icon
+        } else {
+          passwordInput.type = "password";
+          toggleIcon.src = "eye-slash.png";  // Use an eye-slash icon
+        }
+      }
+  
   return (
     <div className="div">
       <div className="div-2">
@@ -53,20 +94,20 @@ const SignUp = () => {
         <div className="column-2">
           <div className="div-3">
             <div className="div-4">Eat Good Naija</div>
-            <div className="div-5">Create a new account</div>
+            <div className="div-5">Create a new vendor account</div>
             
-            <div className="google-form">
-                <form>
-                    <button>
-                    <span className="glogo">
-                        <img src="src/assets/images/google.png" alt="Google Logo" />
-                    </span>
-                    <span id="g-text">Sign Up with Google</span>
-                    </button>
-                </form>
-            </div>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+                setToken(credentialResponse.credential);
+                navigate(`/signin/${credentialResponse.credential}`);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              />
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
               <div className="div-13">Full name</div>
               <div className="div-14">
                 <label htmlFor="fullName">
@@ -80,14 +121,16 @@ const SignUp = () => {
                     id="fullName"
                     name="fullName"
                     placeholder="Enter your full name"
-                    value={setUser.fullName}
-                    onChange={handleChange}
+                    value={fullName}
+                    onChange={(e) => onInputChange(e)}
                   />
                 </label>
               </div>
+
+
               <div className="div-17">Email</div>
               <div className="div-18">
-                <label htmlFor="email">
+                <label htmlFor="username">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/a5de1fbdea27d7d4dfc7ced3eb22910cbda4fda0c7ef37966b06d763889cb188?apiKey=f034156a35d447a6a80ca3e586c86bf3&"
@@ -96,11 +139,11 @@ const SignUp = () => {
                   />
                   <input
                     type="email"
-                    id="email"
-                    name="email"
+                    id="username"
+                    name="username"
                     placeholder="Enter your email"
-                    value={setUser.email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username}
+                    onChange={(e) => onInputChange(e)}
                   />
                 </label>
               </div>
@@ -124,8 +167,8 @@ const SignUp = () => {
                     id="phoneNumber"
                     name="phoneNumber"
                     placeholder="Enter your phone number"
-                    value={setUser.phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    value={phoneNumber}
+                    onChange={(e) => onInputChange(e)}
                   />
                 </label>
               </div>
@@ -144,8 +187,9 @@ const SignUp = () => {
                       id="password"
                       name="password"
                       placeholder="Enter your password"
-                      value={setUser.password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                      onChange={(e) => onInputChange(e)}
+                      onClick={() => togglePasswordVisibility1('passwordInput', 'toggleIcon')}
                     />
                   </div>
                 </label>
@@ -165,8 +209,9 @@ const SignUp = () => {
                       id="confirmPassword"
                       name="confirmPassword"
                       placeholder="Confirm your password"
-                      value={setUser.confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      value={confirmPassword}
+                      onChange={(e) => onInputChange(e)}
+                      onClick={() => togglePasswordVisibility1('passwordInput', 'toggleIcon')}
                     />
                   </div>
                 </label>
@@ -175,6 +220,27 @@ const SignUp = () => {
                 Submit
               </button>
             </form>
+
+
+            <Modal show={showModal} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  {status ? successMessage : errorMessage}
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="modal-body">{modalMessage}</Modal.Body>
+              <Modal.Footer>
+                <Button
+                  className="modal-close"
+                  variant="secondary"
+                  onClick={handleClose}
+                >
+                  Continue
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+
             <div className="div-32">
               Already have an account?{' '}
               <span
@@ -184,7 +250,9 @@ const SignUp = () => {
                   color: 'rgba(47, 128, 237, 1)',
                 }}
               >
-                Sign in here
+                <Link to={"/Login"}>
+    Sign in here
+  </Link>
               </span>
             </div>
           </div>
