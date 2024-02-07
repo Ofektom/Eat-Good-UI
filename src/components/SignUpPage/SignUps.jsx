@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import './eat-good.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from "@react-oauth/google";
@@ -103,7 +103,7 @@ const SignUps = () => {
             onSuccess={(credentialResponse) => {
               console.log(credentialResponse);
               setToken(credentialResponse.credential);
-              navigate(`/signin/${credentialResponse.credential}`);
+              navigate(`/login/${credentialResponse.credential}`);
             }}
             onError={() => {
               console.log("Login Failed");

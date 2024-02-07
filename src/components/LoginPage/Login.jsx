@@ -36,10 +36,13 @@ const Login = () => {
         const response = await axios.get(
           `http:///api/v1/auth/google/${credential}`
         );
+
+        
   
         const token = response.data;
-  
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    
+    // Save the token to localStorage
+    localStorage.setItem("jwtToken", token);
   
         setShowModal(true);
         setStatus(true);
@@ -78,8 +81,9 @@ const Login = () => {
 
   
         const token = response.data;
-        console.log(token);
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    
+    // Save the token to localStorage
+    localStorage.setItem("jwtToken", token);
   
         setShowModal(true);
         setStatus(true);

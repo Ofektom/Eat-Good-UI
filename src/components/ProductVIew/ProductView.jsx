@@ -10,19 +10,32 @@ const ProductView = () => {
 
 
     const loadProducts = async () => {
+        // Retrieve the token from localStorage
+        const token = localStorage.getItem("jwtToken");
+    
         const result = await axios.get("http://localhost:8081/api/v1/products/user/view/all", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
             validateStatus: () => {
                 return true;
             }
         });
-        if (result.status === 302) {
+    
+        if (result.status ===  200) { // Assuming a successful status code of  200
             setProducts(result.data);
+        } else {
+            // Handle other status codes appropriately
         }
     };
 
+    
+
+    
+
     return (
         <div>
-            <table>
+            <table >
                 <thead>
                     <tr>
                         <th>ID</th>

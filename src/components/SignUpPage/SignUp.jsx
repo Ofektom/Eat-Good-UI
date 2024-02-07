@@ -100,7 +100,7 @@ const SignUp = () => {
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
                 setToken(credentialResponse.credential);
-                navigate(`/signin/${credentialResponse.credential}`);
+                navigate(`/login/${credentialResponse.credential}`);
               }}
               onError={() => {
                 console.log("Login Failed");
