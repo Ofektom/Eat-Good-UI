@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Crimson Pro:700,400|Inter:700|Lato:400,600");
+.navbar-main {
+   position: absolute; 
+   width: 684px;
+   height: 42px;
+   left: 121px;
+   padding: 1px 200px 1px 200px;
+   gap: 10px;
+   opacity: 0px;
+ 
+}
+
+.navbar-search{
+    width: 284px;
+    height:40px;
+    background: #F5F5F5;
+    border-radius: 8px;
+
+}
+
+.navbar-form{
+    width: 284px;
+    height: 40px;
+    padding: 8px 12px 8px 12px;
+    gap: 8px;
+    border-radius: 8px;
+    opacity: 0px;
+    display: flex;
+
+
+
+}
+
+.search-icon{
+    width: 24px;
+    height: 24px;
+    gap: 0px;
+    opacity: 0px;
+    cursor: pointer;
+}
+
+.search-form-control{
+    width: 204px;
+    height: 24px;
+    gap: 4px;
+    opacity: 0px;
+    background: #F5F5F5;
+
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+
+
+}
+.filter-icon{
+    width: 16px;
+    height: 16px;
+    gap: 0px;
+    opacity: 0px;
+    cursor: pointer;
+}

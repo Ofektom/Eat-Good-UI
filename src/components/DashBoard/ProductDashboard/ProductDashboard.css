@@ -25,46 +25,92 @@
 /* ... other styles ... */
 .navbar {
     position: relative;
+    background-color: #ffffff;   
 }
+
+nav {
+    background-color: #ffffff;
+}
+
 
 /* Style for the search bar */
 .navbar .d-flex {
-    width: 100%;
+    width:  100%;
+    justify-content: flex-start; /* Align items to the start (left) of the container */
 }
 
 .navbar .d-flex .w-30 {
-    width: 30%;
-    margin-left: 40%; /* Position the search bar 40% from the start of the navbar */
+    width:  30%;
+    margin-left:  9rem; /* Start the search bar from the beginning of the navbar */
 }
 
 .navbar .d-flex .input-group {
-    width: 100%;
+    width:  100%;
 }
 
 .navbar .d-flex .input-group .form-control {
-    border-radius: 0;
+    border-radius:  0;
     border-left: none;
     border-right: none;
-    padding-left: 0; /* Remove default padding */
+    padding-left:  0; /* Remove default padding */
 }
 
 .navbar .d-flex .input-group .input-group-text {
-    border-radius: 0;
+    border-radius:  0;
     background-color: transparent;
     border: none;
     display: flex; /* Use flexbox for alignment */
     align-items: center; /* Vertically center the icons */
-    padding: 0 0.5rem; /* Add horizontal padding if needed */
+    padding:  0  0.5rem; /* Add horizontal padding if needed */
 }
 
 /* Style for the search icon */
 .navbar .d-flex .input-group .input-group-text:first-child {
-    padding-right: 0; /* Remove right padding for the first icon */
+    position: relative;
+    left: 3rem;
+    z-index: 1;
+    width: 2.5rem;
+
 }
 
 /* Style for the filter icon */
 .navbar .d-flex .input-group .input-group-text:last-child {
-    padding-left: 0; /* Remove left padding for the last icon */
+    position: relative;
+    right: 3rem;
+    z-index: 1;
+    width: 2.5rem;
+}
+
+ /* .search-form {
+    position: relative;
+    left: 15rem;
+   
+} */
+
+/* Style for the search form */
+.search-form {
+    /* Your custom styles for the search form go here */
+    margin-left:  25%; /* Position the search form  40% from the start of the navbar */
+}
+
+/* Style for the placeholder text inside the search input */
+.search-form .input-group .form-control::placeholder {
+    /* Your custom styles for the placeholder text go here */
+    color: #888; /* Example: change the placeholder text color to a light gray */
+    opacity:  1; /* Ensure the placeholder is visible */
+    padding: 1rem 3rem;
+    background-color: #EAECF0;
+    border: 0px solid #EAECF0;
+    font-family: inter;
+    font-weight: 400;
+}
+
+
+/* Style for the filter icon */
+.search-form .input-group-text:last-child {
+    /* Your custom styles for the filter icon go here */
+    padding-left:  0; 
+    z-index: 2;/* Remove left padding for the last icon */
 }
 
 .sidebar img{
@@ -165,7 +211,6 @@
     background-color: #ffffff;
     border: none;
     padding-top: -3rem !important;
-    
 }
 
 .card-footer .btn {
@@ -189,7 +234,7 @@
 }
 
 .card-footer .price {
-    font-family: inter;
+    font-family: Inter;
     font-weight: 500;
 
 }
@@ -279,7 +324,6 @@
  .quantity-container .card-edit img  {
     width: 1.3rem;
     height: 1.2rem;
-
 } 
 
 .cart-area {

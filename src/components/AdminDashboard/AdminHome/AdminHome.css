@@ -1,0 +1,420 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:400,500");
+.admin-home-container{
+    width: 1318px;
+    height: 1024px;
+    left: 121px;
+    top: 0px;
+    position: absolute;
+}
+.admin-category-list{
+    width: 870px;
+    height: 36px;
+    top: 92px;
+    left: 130px;
+    gap: 24px;
+    opacity: 0px;
+
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+}
+
+.trending{
+    width: 113px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #B6B6B633;
+
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.trending-active{
+    width: 113px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #D1E9FF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+}
+
+.category-image{
+    width: 24px;
+    height: 24px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+.soups{
+    width: 169px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #B6B6B633;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+
+}
+
+.soups-active{
+    width: 169px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #D1E9FF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+}
+
+.rice{
+    width: 131px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #B6B6B633;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.rice-active{
+    width: 131px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #D1E9FF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+}
+
+.grilled{
+    width: 228px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #B6B6B633;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+
+}
+.grilled-active{
+    width: 228px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #D1E9FF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+}
+
+.raw{
+    width: 120px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #B6B6B633;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+
+}
+
+.raw-active{
+    width: 120px;
+    height: 36px;
+    padding: 6px 12px 6px 12px;
+    gap: 6px;
+    border-radius: 12px;
+    opacity: 0px;
+    background: #D1E9FF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+}
+
+.admin-products-container{
+    width: 744px;
+    height: 470px;
+    top: 178px;
+    left: 130px;
+    gap: 32px;
+    opacity: 0px;
+    position: absolute;
+}
+
+.admin-row1{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    opacity: 0px;
+    width: 744px;
+    height: 219px;
+    gap: 24px;
+    opacity: 0px;
+
+    
+
+}
+
+.admin-product-card{
+    width: 232px;
+    height: 219px;
+}
+
+.admin-product-image{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 16px;
+    top: -50px;
+    gap: 0px;
+    opacity: 0px;
+    z-index: 1;
+}
+
+.admin-card-lower{
+    position: relative;
+    width: 232px;
+    height: 159px;
+    top: 60px;
+    padding: 10px 16px 10px 16px;
+    gap: 16px;
+    border-radius: 8px;
+    border: 0.5px;
+    opacity: 0px;
+    border: 0.5px solid #D0D5DD;
+    background: #FFFFFF;
+
+
+}
+
+.admin-rating{
+    width: 61px;
+    height: 24px;
+    gap: 4px;
+    opacity: 0px;
+    display: flex;
+    margin-left: 140px;
+    
+
+}
+
+.admin-rating-star{
+    width: 16px;
+    height: 16px;
+    gap: 0px;
+    opacity: 0px;
+    margin-top: 5px;
+
+}
+.admin-rating-number{
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+
+}
+.admin-product-details{
+    width: 200px;
+    height: 99px;
+    gap: 27px;
+    opacity: 0px;
+}
+
+.admin-product-title{
+    width: 200px;
+    height: 24px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #101828;
+    position: relative;
+    top: 10px;
+
+
+
+}
+.admin-card-footer{
+    width: 200px;
+    height: 48px;
+    gap: 0px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0px;
+    margin-top: 35px;
+    align-items: center;
+
+}
+#admin-card-button{
+   width: 94px;
+    height: 32px;
+    padding: 4px 8px 4px 8px;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px ;
+    opacity: 0px;
+
+    border: 1px solid #EAECF0;
+    background: #FFFFFF;
+    color: #2F80ED;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    
+
+}
+#admin-card-button2{
+    width: 94px;
+    height: 32px;
+    padding: 4px 8px 4px 8px;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px ;
+    opacity: 0px;
+
+    border: 1px solid #EAECF0;
+    background: #FFFFFF;
+    color: #828282;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+
+}
+
+.card-button-text{
+    width: 94px;
+    height: 32px;
+    
+}
+
+.admin-plus-icon-active{
+    width: 8px;
+    height: 4.94px;
+    top: -35px;
+    left: 30px;
+    gap: 0px;
+    opacity: 0px;
+    position: relative;
+}
+
+.admin-price-size{
+    width: 79px;
+    height: 48px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-left: 20px;
+    
+
+}
+.admin-price{
+    width: 79px;
+    height: 24px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+.admin-size{
+    width: 43px;
+    height: 24px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    position: relative;
+    left: 25px;
+    
+
+
+}
